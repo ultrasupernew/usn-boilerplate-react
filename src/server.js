@@ -7,6 +7,9 @@ import { renderToString } from 'react-dom/server';
 // Styled-components
 import { ServerStyleSheet } from 'styled-components';
 
+// React Helmet
+import {Helmet} from 'react-helmet';
+
 const assets = require(process.env.RAZZLE_ASSETS_MANIFEST);
 
 const server = express();
@@ -24,23 +27,30 @@ server
       )
     );
 
+    // Styles
     const styleTags = sheet.getStyleTags();
+    // Meta
+    const helmet = Helmet.renderStatic();
     if (context.url) {
       res.redirect(context.url);
     } else {
       res.status(200).send(
         `<!doctype html>
-          <html lang="">
+          <html lang="en" ${helmet.htmlAttributes.toString()}>
             <head>
                 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
                 <meta charset="utf-8" />
                 <title>Welcome to Razzle</title>
                 <meta name="viewport" content="width=device-width, initial-scale=1">
+                <!-- Social Meta -->
+                ${helmet.title.toString()}
+                ${helmet.meta.toString()}
+                ${helmet.link.toString()}
+                <!-- Styles -->
                 ${ assets.client.css ? `<link rel="stylesheet" href="${assets.client.css}">` : '' }
-                ${ process.env.NODE_ENV === 'production' ? `<script src="${assets.client.js}" defer></script>` : `<script src="${assets.client.js}" defer crossorigin></script>` }
-
-                <!-- Styled component stlyes -->
                 ${styleTags}
+                <!-- JS -->
+                ${ process.env.NODE_ENV === 'production' ? `<script src="${assets.client.js}" defer></script>` : `<script src="${assets.client.js}" defer crossorigin></script>` }
             </head>
             <body>
                 <div id="root">${markup}</div>
