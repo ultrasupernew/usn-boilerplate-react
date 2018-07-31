@@ -12,6 +12,7 @@
       {
         "root": ["./"],
         "alias": {
+          "containers": "./src/containers",
           "components": "./src/components",
           "src": "./src",
           "public": "./public"

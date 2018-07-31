@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import logo from './logo.svg';
-import './Home.css';
+import logo from 'public/logo.svg';
 
 const Homecontainer = styled.div`
   text-align: center;
@@ -25,8 +24,7 @@ class Home extends React.Component {
           <h2>Welcome to USN Boilerplate for React</h2>
         </HomeHeader>
         <p className="Home-intro">
-          To get started, edit <code>src/App.js</code> or{' '}
-          <code>src/Home.js</code> and save to reload.
+          About
         </p>
       </Homecontainer>
     );
