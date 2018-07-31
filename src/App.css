@@ -51,5 +51,5 @@ html {
 }
 * {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  -webkit-backface-visibility:hidden;
+  -webkit-backface-visibility: hidden;
 }
