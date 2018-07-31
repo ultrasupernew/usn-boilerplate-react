@@ -1,0 +1,22 @@
+
+{
+  "presets": [
+      "razzle/babel"
+  ],
+  "plugins": [
+    [
+      "transform-runtime"
+    ],
+    [
+      "module-resolver",
+      {
+        "root": ["./"],
+        "alias": {
+          "components": "./src/components",
+          "src": "./src",
+          "public": "./public"
+        }
+      }
+    ]
+  ]
+}
